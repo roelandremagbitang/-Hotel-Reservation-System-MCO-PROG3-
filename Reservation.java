@@ -1,5 +1,6 @@
 
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -12,6 +13,8 @@ public class Reservation {
     private Calendar checkInDate = Calendar.getInstance();
     private Calendar checkOutDate = Calendar.getInstance();
     private Room chosenRoom;
+    private DiscountTag discountTag;
+    private double totalPrice;
 
     /**
      * Creates a Reservation object, asking for the full details of the guest's name, check-in and out dates, and the chosen Room.
@@ -25,11 +28,13 @@ public class Reservation {
      * @param out_year year of the check-out date
      * @param chosenRoom the chosen Room of the guest
      */
-    public Reservation(String guestName, int in_date, int in_month, int in_year, int out_date, int out_month, int out_year, Room chosenRoom){
+    public Reservation(String guestName, int in_date, int in_month, int in_year, int out_date, int out_month, int out_year, Room chosenRoom, DiscountTag discountTag, ArrayList<MonthDate>monthDateList){
         this.guestName = guestName;
         this.checkInDate.set(in_year, in_month, in_date);
         this.checkOutDate.set(out_year, out_month, out_date);
         this.chosenRoom = chosenRoom;
+        this.discountTag = discountTag;
+        breakdown(monthDateList);
     }
 
     /**
@@ -46,9 +51,6 @@ public class Reservation {
      *
      * @return totalPrice
      */
-    public double getTotalPrice(){
-        return this.chosenRoom.getBasePrice() * (this.checkOutDate.get(Calendar.DAY_OF_MONTH) - this.checkInDate.get(Calendar.DAY_OF_MONTH));
-    }
 
     /**
      * Returns the check-in date of a Reservation.
@@ -78,15 +80,62 @@ public class Reservation {
     }
 
     /**
+     * Returns the discountTag of a Reservation
+     *
+     * @return discountTag
+     */
+    public DiscountTag getDiscountTag(){
+        return this.discountTag;
+    }
+
+    public double getTotalPrice() {
+        return this.totalPrice;
+    }
+
+    /**
+     * Returns a String representation of the Reservation.
+     *
+     * @return reservationInfo
+     */
+    public String getReservationInfo(ArrayList<MonthDate> monthDateList){
+        String reservationInfo = "";
+        reservationInfo += "Guest Name: " + this.getGuestName() + "\n";
+        reservationInfo += "Chosen room info:\n" + this.getChosenRoom().getRoomInfo();
+        reservationInfo += "Check-in Date (month, day, and then year): " + this.getCheckInDate().get(Calendar.MONTH) + "-" + this.getCheckInDate().get(Calendar.DAY_OF_MONTH) + "-" + this.getCheckInDate().get(Calendar.YEAR) + "\n";
+        reservationInfo += "Check-out Date (month, day, and then year): " + this.getCheckOutDate().get(Calendar.MONTH) + "-" + this.getCheckOutDate().get(Calendar.DAY_OF_MONTH) + "-" + this.getCheckOutDate().get(Calendar.YEAR) + "\n";
+        reservationInfo += this.breakdown(monthDateList);
+        return reservationInfo;
+    }
+    /**
      * Provides the total price of the reservation that has been broken up by amount of nights spent.
      *
      */
-    public void breakdown(){
-        int nights = this.checkOutDate.get(Calendar.DAY_OF_MONTH) - this.checkInDate.get(Calendar.DAY_OF_MONTH);
-        System.out.println("Nights\tPrice per Night\n");
-        for(int i = 1; i <= nights; i++){
-            System.out.printf("Night %d\t%.2f PHP\n", i, this.chosenRoom.getBasePrice());
+    public String breakdown(ArrayList<MonthDate> monthDateList){
+        String breakdown = "";
+        double price = 0;
+        double total = 0;
+        for(int i=this.getCheckInDate().get(Calendar.DAY_OF_MONTH); i<this.getCheckOutDate().get(Calendar.DAY_OF_MONTH); i++){
+            if(i==this.getCheckInDate().get(Calendar.DAY_OF_MONTH)){
+                if (this.getDiscountTag().getStay4Get1Code())
+                    breakdown += "First night is free." + "\tPrice: " + price + "\n";
+                else
+                    price = this.getChosenRoom().getBasePrice() * monthDateList.get(i-1).getRate();
+                total += price;
+                breakdown += this.getCheckInDate().get(Calendar.MONTH) + "/" + monthDateList.get(i - 1).getDate() + ":\tPrice: " + price + "\n";
+                i++;
+            }
+            price = this.getChosenRoom().getBasePrice() * monthDateList.get(i-1).getRate();
+            total += price;
+            breakdown += this.getCheckInDate().get(Calendar.MONTH) + "/" + monthDateList.get(i-1).getDate() + ":\tPrice: " + price + "\n";
         }
-        System.out.printf("TOTAL: %.2f PHP\n", nights * this.chosenRoom.getBasePrice());
+        if(this.getDiscountTag().getIWorkHereCode())
+            total = total - (total * 0.10);
+        if(this.getDiscountTag().getPaydayCode())
+            total = total - (total * 0.07);
+        if(this.getDiscountTag().getIWorkHereCode() || this.getDiscountTag().getPaydayCode() || this.getDiscountTag().getStay4Get1Code())
+            breakdown += "Discounts have been applied.\n";
+        breakdown += "Total Price: " + total + "\n";
+        this.totalPrice = total;
+        return breakdown;
     }
 }

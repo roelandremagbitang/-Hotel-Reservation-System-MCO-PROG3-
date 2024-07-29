@@ -12,6 +12,7 @@ public class Hotel {
     private int numberOfRooms;
     private ArrayList<Room> roomList;
     private ArrayList<Reservation> reservationList;
+    private ArrayList<MonthDate> monthDateList;
 
     /**
      * Constructs a Hotel object that includes the name of the Hotel and the initial capacity of the Hotel.
@@ -22,10 +23,15 @@ public class Hotel {
      */
     public Hotel(int roomCount, String hotelName){
         //uses the set methods so that the conditions are also met upon instantiation
-            setNumberOfRooms(roomCount);
-            setHotelName(hotelName);
-            this.roomList = new ArrayList<Room>(this.numberOfRooms);
-            this.reservationList = new ArrayList<Reservation>();
+        setNumberOfRooms(roomCount);
+        setHotelName(hotelName);
+        this.roomList = new ArrayList<Room>(this.numberOfRooms);
+        this.reservationList = new ArrayList<Reservation>();
+        this.monthDateList = new ArrayList<>();
+        for(int i=0; i<31; i++){
+            MonthDate monthDate = new MonthDate(i+1);
+            this.monthDateList.add(i, monthDate);
+        }
     }
 
     /**
@@ -69,7 +75,7 @@ public class Hotel {
     public ArrayList<Reservation> getReservationList(){
         return this.reservationList;
     }
-
+    public ArrayList<MonthDate> getMonthDateList(){return this.monthDateList;}
     /**
      * Sets the room capacity of the Hotel.
      *
