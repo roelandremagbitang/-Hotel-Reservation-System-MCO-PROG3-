@@ -4,6 +4,10 @@ public class DeluxeRoom extends Room{
         super(roomNumber);
         this.deluxeRoomBasePrice = 0;
     }
+    
+    /** 
+     * @return double
+     */
     @Override
     public double getBasePrice(){
         this.deluxeRoomBasePrice = super.getBasePrice() + super.getBasePrice() * 0.20;
