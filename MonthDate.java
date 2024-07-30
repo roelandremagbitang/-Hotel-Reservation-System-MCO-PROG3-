@@ -7,6 +7,10 @@ public class MonthDate {
         this.rate = 1;
     }
 
+    
+    /** 
+     * @param rate
+     */
     public void setRate(double rate) {
         this.rate = rate;
     }
