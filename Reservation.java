@@ -88,6 +88,10 @@ public class Reservation {
         return this.discountTag;
     }
 
+    
+    /** 
+     * @return double
+     */
     public double getTotalPrice() {
         return this.totalPrice;
     }
