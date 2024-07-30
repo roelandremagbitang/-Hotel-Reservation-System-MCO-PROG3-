@@ -9,19 +9,19 @@ public class View {
     private JFrame C2C1, C2C2, C2C3, C2C4;
     private JFrame C3C1, C3C2, C3C3, C3C4, C3C5, C3C7;
     private JLabel meItself, hnItself, rcItself;
-    private JLabel mainLbl, mc2c2Lbl, mc2c3Lbl, mc2c4CIDMonthLbl, mc2c4CIDDateLbl, mc2c4CIDYearLbl, mc2c4CODMonthLbl, mc2c4CODDateLbl, mc2c4CODYearLbl;
+    private JLabel mainLbl, mc2c2Lbl, mc2c3Lbl, mc2c4CIDMonthLbl, mc2c4CIDDateLbl, mc2c4CIDYearLbl;
     private JLabel mc3c1Lbl, mc3c2Lbl, mc3c3Lbl, mc3c4Lbl, mc3c5Lbl, dateLbl, rateLbl, mc32RoomTypeLbl;
-    private JLabel mc2c2RemarkLbl, mc2c3RemarkLbl, mc2c4RemarkLbl, mc3c1RemarkLbl, mc3c2RemarkLbl, mc3c3RemarkLbl, mc3c4RemarkLbl, mc3c5RemarkLbl, mc3c7RemarkLbl, mc4RemarkLbl;
+    private JLabel mc2c2RemarkLbl, mc2c3RemarkLbl, mc3c1RemarkLbl, mc3c2RemarkLbl, mc3c3RemarkLbl, mc3c4RemarkLbl, mc3c5RemarkLbl, mc3c7RemarkLbl, mc4RemarkLbl;
     private JLabel inputLbl, welcomeLbl, remarkLblMc1, nameLbl, case1Lbl, case2Lbl, case3Lbl, case4Lbl;
-    private JLabel hotelLbl, resRoomLbl, resGuestLbl, cidMonthLbl, cidDateLbl, cidYearLbl, codMonthLbl, codDateLbl, codYearLbl;
+    private JLabel hotelLbl, resRoomLbl, resGuestLbl, cidMonthLbl, cidDateLbl, cidYearLbl, codMonthLbl, codDateLbl, codYearLbl, employeeLbl;
     private JTextField nameTf, sizeTf, roomNumTf1, hotelNameTf, roomNumTf2, roomNumTf3, resTf, resRemoveTf, priceTf, hotelIndexTf, dateTf, rateTf, roomTypeTf;
-    private JTextField mc2c4CiMTf, mc2c4CiDTf, mc2c4CiYTf, mc2c4CoMTf, mc2c4CoDTf, mc2c4CoYTf;
-    private JTextField hotelTf, resRoomTf, resGuestTf, cidMonthTf, cidDateTf, cidYearTf, codMonthTf, codDateTf, codYearTf;
+    private JTextField mc2c4CiMTf, mc2c4CiDTf, mc2c4CiYTf;
+    private JTextField hotelTf, resRoomTf, resGuestTf, cidMonthTf, cidDateTf, cidYearTf, codMonthTf, codDateTf, codYearTf, employeeTf;
     private JButton btn1, btn2, btn3, btn4;
     private JButton btnMC2C1, btnMC2C2, btnMC2C3, btnMC2C4;
     private JButton btnMC3C1, btnMC3C2, btnMC3C3, btnMC3C4, btnMC3C5, btnMC3C6, btnMC3C7;
     private JButton subMC1, subMC2C2, subMC2C3, subMC2C4, subMC3C1, subMC3C2, subMC3C3, subMC3C4, subMC3C5, subMC3C7, subMC4;
-    private JTextArea TextArea, hotelListArea, mc2c2Area, mc2c3Area, mc2c4Area, mc3c2Area, mc3c3Area, mc3c4Area, mc3c5Area, mc3c7Area, reservationArea;
+    private JTextArea TextArea, hotelListArea, mc2c2Area, mc2c3Area, mc2c4Area, mc3c2Area, mc3c3Area, mc3c5Area, mc3c7Area, reservationArea;
     public View() {
         this.mainFrame = new JFrame("MCO2");
 
@@ -41,7 +41,7 @@ public class View {
         this.TextArea.setEditable(false);
         //this.employeeListTextArea.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.hotelListArea = new JTextArea("");
-        this.hotelListArea.setPreferredSize(new Dimension(720, 200));
+        this.hotelListArea.setPreferredSize(new Dimension(540, 200));
         this.hotelListArea.setEditable(false);
 
         this.remarkLblMc1 = new JLabel();
@@ -58,9 +58,6 @@ public class View {
         panel1.add(this.inputLbl);
         panel1.add(this.hotelIndexTf);
         panel1.add(this.mainLbl);
-        /*panel1.add(this.inputLbl);
-        panel1.add(this.inputTf);
-        panel1.add(this.submitBtn);*/
         panel1.setPreferredSize(new Dimension(250, 100));
         panel1.setBackground(Color.LIGHT_GRAY);
 
@@ -158,16 +155,15 @@ public class View {
         this.C2C2 = new JFrame("Room Info");
         this.mc2c2Lbl = new JLabel("Room Number: ");
         this.mc2c2RemarkLbl = new JLabel();
-        this.mc2c2Area = new JTextArea();
         this.subMC2C2 = new JButton("Submit");
         this.roomNumTf1 = new JTextField();
+        this.mc2c2Area = new JTextArea();
         JPanel mc2_2 = new JPanel();
 
         this.roomNumTf1.setColumns(10);
         this.mc2c2Area.setPreferredSize(new Dimension(300, 300));
         mc2_2.setPreferredSize(new Dimension(250, 100));
         mc2_2.setBackground(Color.LIGHT_GRAY);
-        this.mc2c2Area.setEditable(false);
         mc2_2.add(this.mc2c2Lbl);
         mc2_2.add(this.roomNumTf1);
         mc2_2.add(this.subMC2C2);
@@ -209,27 +205,18 @@ public class View {
         this.mc2c4CIDMonthLbl = new JLabel("Check-In Month: ");
         this.mc2c4CIDDateLbl = new JLabel("Check-In Date: ");
         this.mc2c4CIDYearLbl = new JLabel("Check-In Year: ");
-        this.mc2c4CODMonthLbl = new JLabel("Check-Out Month: ");
-        this.mc2c4CODDateLbl = new JLabel("Check-Out Date: ");
-        this.mc2c4CODYearLbl = new JLabel("Check-Out Year: ");
         this.mc2c4CiMTf = new JTextField();
         this.mc2c4CiDTf = new JTextField();
         this.mc2c4CiYTf = new JTextField();
-        this.mc2c4CoMTf = new JTextField();
-        this.mc2c4CoDTf = new JTextField();
-        this.mc2c4CoYTf = new JTextField();
         this.subMC2C4 = new JButton("Submit");
         this.mc2c4Area = new JTextArea();
-        this.mc2c4RemarkLbl = new JLabel();
         JPanel mc2_4 = new JPanel();
 
         this.mc2c4CiMTf.setColumns(10);
         this.mc2c4CiDTf.setColumns(10);
         this.mc2c4CiYTf.setColumns(10);
-        this.mc2c4CoMTf.setColumns(10);
-        this.mc2c4CoDTf.setColumns(10);
-        this.mc2c4CoYTf.setColumns(10);
         mc2_4.setPreferredSize(new Dimension(250, 250));
+        this.mc2c4Area.setPreferredSize(new Dimension(300, 300));
         mc2_4.setBackground(Color.LIGHT_GRAY);
         this.mc2c4Area.setEditable(false);
         mc2_4.add(this.mc2c4CIDMonthLbl);
@@ -238,14 +225,7 @@ public class View {
         mc2_4.add(this.mc2c4CiDTf);
         mc2_4.add(this.mc2c4CIDYearLbl);
         mc2_4.add(this.mc2c4CiYTf);
-        mc2_4.add(this.mc2c4CODMonthLbl);
-        mc2_4.add(this.mc2c4CoMTf);
-        mc2_4.add(this.mc2c4CODDateLbl);
-        mc2_4.add(this.mc2c4CoDTf);
-        mc2_4.add(this.mc2c4CODYearLbl);
-        mc2_4.add(this.mc2c4CoYTf);
         mc2_4.add(this.subMC2C4);
-        mc2_4.add(this.mc2c4RemarkLbl);
 
         this.C2C4 = new JFrame("Room Availability");
         this.C2C4.setLayout(new BorderLayout());
@@ -365,7 +345,6 @@ public class View {
         this.C3C3.setVisible(false);
 
         //mc3c4
-        this.mc3c4Area = new JTextArea();
         this.mc3c4Lbl = new JLabel("Enter new price: ");
         this.mc3c4RemarkLbl = new JLabel();
         this.subMC3C4 = new JButton("Submit");
@@ -373,8 +352,6 @@ public class View {
         JPanel mc3_4 = new JPanel();
 
         this.priceTf.setColumns(10);
-        this.mc3c4Area.setPreferredSize(new Dimension(300, 300));
-        this.mc3c4Area.setEditable(false);
         mc3_4.setPreferredSize(new Dimension(250, 100));
         mc3_4.setBackground(Color.LIGHT_GRAY);
         mc3_4.add(this.mc3c4Lbl);
@@ -386,7 +363,6 @@ public class View {
         this.C3C4.setLayout(new BorderLayout());
         this.C3C4.setSize(new Dimension(1080, 720));
         this.C3C4.add(mc3_4, BorderLayout.WEST);
-        this.C3C4.add(this.mc3c4Area, BorderLayout.EAST);
         this.C3C4.setVisible(false);
 
         //mc3c5
@@ -463,6 +439,8 @@ public class View {
         this.resRoomTf = new JTextField();
         this.resRoomLbl = new JLabel("Room Index: ");
         this.hotelLbl = new JLabel("Hotel Index: ");
+        this.employeeLbl = new JLabel("Are you an employee? 1 - yes, 2 - no: ");
+        this.employeeTf = new JTextField();
         this.case4Lbl = new JLabel("Reservation Booking");
         this.reservationArea = new JTextArea();
         this.subMC4 = new JButton("Submit");
@@ -470,6 +448,7 @@ public class View {
         JPanel mcT4 = new JPanel();
         JPanel mc4 = new JPanel();
 
+        this.employeeTf.setColumns(10);
         this.hotelTf.setColumns(10);
         this.resRoomTf.setColumns(10);
         this.cidMonthTf.setColumns(10);
@@ -505,6 +484,8 @@ public class View {
         mc4.add(this.codDateTf);
         mc4.add(this.codYearLbl);
         mc4.add(this.codYearTf);
+        mc4.add(this.employeeLbl);
+        mc4.add((this.employeeTf));
         mc4.add(this.subMC4);
         mc4.add(this.mc4RemarkLbl);
 
@@ -520,6 +501,10 @@ public class View {
         this.mainFrame.setVisible(true);
     }
 
+    
+    /** 
+     * @param text
+     */
     public void concatHnItself(String text){
         this.hnItself.setText("Hotel Name: " + text);
     }
@@ -542,9 +527,6 @@ public class View {
         this.btn4.addActionListener(actionListener);
     }
     public void setMC1SubmitBtnListener(ActionListener actionListener){
-        this.subMC1.addActionListener(actionListener);
-    }
-    public void setMC2C1SubmitBtnListener(ActionListener actionListener){
         this.subMC1.addActionListener(actionListener);
     }
     public void setMC2C2SubmitBtnListener(ActionListener actionListener){
@@ -666,7 +648,33 @@ public class View {
     public void setFeedbackLblText(String text) {
         this.remarkLblMc1.setText(text);
     }
-
+    public void setMc2c2RemarkLbl(String text){
+        this.mc2c2RemarkLbl.setText(text);
+    }
+    public void setMc2c3RemarkLbl(String text){
+        this.mc2c3RemarkLbl.setText(text);
+    }
+    public void setMc3c1RemarkLbl(String text){
+        this.mc3c1RemarkLbl.setText(text);
+    }
+    public void setMc3c2RemarkLbl(String text){
+        this.mc3c2RemarkLbl.setText(text);
+    }
+    public void setMc3c3RemarkLbl(String text) {
+        this.mc3c3RemarkLbl.setText(text);
+    }
+    public void setMc3c4RemarkLbl(String text) {
+        this.mc3c4RemarkLbl.setText(text);
+    }
+    public void setMc3c5RemarkLbl(String text) {
+        this.mc3c5RemarkLbl.setText(text);
+    }
+    public void setMc3c7RemarkLbl(String text) {
+        this.mc3c7RemarkLbl.setText(text);
+    }
+    public void setMc4RemarkLbl(String text){
+        this.mc4RemarkLbl.setText(text);
+    }
     public void setTextAreaText(String text) {
         this.TextArea.setText(text);
     }
@@ -687,9 +695,6 @@ public class View {
     }
     public void setRoomListAreaRemText(String text){
         this.mc3c3Area.setText(text);
-    }
-    public void setAreaText4PriceChange(String text){
-        this.mc3c4Area.setText(text);
     }
     public void setResRemAreaText(String text){
         this.mc3c5Area.setText(text);
@@ -724,14 +729,8 @@ public class View {
     public int getCheckInYear(){
         return Integer.parseInt(this.mc2c4CiYTf.getText());
     }
-    public int getCheckOutMonth(){
-        return Integer.parseInt(this.mc2c4CoMTf.getText());
-    }
-    public int getCheckOutDate(){
-        return Integer.parseInt(this.mc2c4CoDTf.getText());
-    }
-    public int getCheckOutYear(){
-        return Integer.parseInt(this.mc2c4CoYTf.getText());
+    public int getEmployeeConTfText(){
+        return Integer.parseInt(this.employeeTf.getText());
     }
     public String getHotelNameTfText(){
         return this.hotelNameTf.getText();
@@ -798,9 +797,6 @@ public class View {
         this.mc2c4CiMTf.setText("");
         this.mc2c4CiDTf.setText("");
         this.mc2c4CiYTf.setText("");
-        this.mc2c4CoMTf.setText("");
-        this.mc2c4CoDTf.setText("");
-        this.mc2c4CoYTf.setText("");
     }
     public void clearTextFieldsMC3C1(){
         this.hotelNameTf.setText("");
