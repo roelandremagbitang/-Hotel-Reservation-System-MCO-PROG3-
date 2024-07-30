@@ -68,10 +68,11 @@ public class Room {
      * Prints a screen output of all the information about a Room.
      *
      */
-    public void getRoomInfo(){
-        System.out.println("Room Number: " + this.getRoomNumber());
-        System.out.println("Price per night: " + this.getBasePrice());
-        System.out.println("Availability: " + this.getAvailability()+ "\n");
+    public String getRoomInfo(){
+        String roomInfo = "Room Number: " + this.getRoomNumber() + "\n";
+        roomInfo += "Price per night: " + this.getBasePrice() + "\n";
+        roomInfo += "Availability: " + this.getAvailability()+ "\n";
+        return roomInfo;
     }
 
     /**
