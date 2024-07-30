@@ -4,6 +4,10 @@ public class ExecutiveRoom extends Room {
         super(number);
         this.executiveRoomBasePrice = 0;
     }
+    
+    /** 
+     * @return double
+     */
     @Override
     public double getBasePrice(){
         this.executiveRoomBasePrice = super.getBasePrice() + (super.getBasePrice() * 0.35);
