@@ -9,6 +9,10 @@ public class DiscountTag {
         this.paydayCode = paydayCode;
     }
 
+    
+    /** 
+     * @return boolean
+     */
     public boolean getIWorkHereCode(){
         return this.iWorkHereCode;
     }
